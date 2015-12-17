@@ -10,3 +10,5 @@ RUN chmod 755 /*.sh
 
 ENV ELASTICSEARCH_ENDPOINT **None**
 ENV CLEAN_PERIOD **None**
+
+CMD /run.sh
