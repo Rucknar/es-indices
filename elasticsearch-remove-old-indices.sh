@@ -95,15 +95,7 @@ if [ -n "$ERROR" ]; then
 fi
 
 # Get the indices from elasticsearch
-INDICES_TEXT=`curl -s "$ELASTICSEARCH/_status?pretty=true" | grep $GREP | grep -v \"index\" | sort -r | awk -F\" {'print $2'}`
-
-if [ -z "$INDICES_TEXT" ]; then
-  echo "No indices returned containing '$GREP' from $ELASTICSEARCH."
-  exit 1
-fi
-
-# Get the indices from elasticsearch
-INDICES_TEXT=`curl -s "$ELASTICSEARCH/_status?pretty=true" | grep $GREP | grep -v \"index\" | sort -r | awk -F\" {'print $2'}`
+INDICES_TEXT=`curl -s "$ELASTICSEARCH/_cat/indices?v" | awk '/'$GREP'/{match($0, /[:blank]*('$GREP'.[^ ]+)[:blank]*/, m); print m[1];}' | sort -r`
 
 if [ -z "$INDICES_TEXT" ]; then
   echo "No indices returned containing '$GREP' from $ELASTICSEARCH."
@@ -123,7 +115,6 @@ if [ ${#INDEX[@]} -gt $KEEP ]; then
     if [ -n "$index" ]; then
       if [ -z "$LOGFILE" ]; then
         curl -s -XDELETE "$ELASTICSEARCH/$index/" > /dev/null
-
       else
         echo `date "+[%Y-%m-%d %H:%M] "`" Deleting index: $index." >> $LOGFILE
         curl -s -XDELETE "$ELASTICSEARCH/$index/" >> $LOGFILE

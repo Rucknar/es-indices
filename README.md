@@ -1,5 +1,5 @@
 # es-indices
-Based on Pindar/docker-es-tools but with a restricted scope and set to run as a daemon
+Based on imperialwicket's elasticsearch-logstash-index-mgmt script,  but with a restricted scope and set to run as a docker container in a daemon mode. 
 
 
 ```
