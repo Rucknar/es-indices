@@ -10,6 +10,6 @@ RUN chmod 755 /*.sh
 
 ENV ELASTICSEARCH_ENDPOINT **None**
 ENV CLEAN_PERIOD **None**
-ENV INDEX Logstash*
+ENV INDEX logstash*
 
 CMD /run.sh
