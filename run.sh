@@ -20,7 +20,7 @@ while [ 1 ]
 do
     # Cleanup old indicies
     echo "Running '/elasticsearch-remove-old-indices.sh -e "$ELASTICSEARCH_ENDPOINT" -i 2'"
-    /elasticsearch-remove-old-indices.sh -e "$ELASTICSEARCH_ENDPOINT" -i 2
+    /elasticsearch-remove-old-indices.sh -e "$ELASTICSEARCH_ENDPOINT" -g $INDEX -i 2
 
     echo "=> Next clean will be started in ${CLEAN_PERIOD} seconds"
     sleep ${CLEAN_PERIOD} & wait
