@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e 
-
 if [ "${CLEAN_PERIOD}" == "**None**" ]; then
     echo "=> CLEAN_PERIOD not defined, use the default value."
     CLEAN_PERIOD=3600
