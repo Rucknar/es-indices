@@ -15,7 +15,6 @@ fi
 echo "=> Run the script every ${CLEAN_PERIOD} seconds"
 
 trap '{ echo "User Interupt."; exit 1; }' SIGINT
-trap '{ echo "SIGTERM received, exiting."; exit 0; }' SIGTERM
 while [ 1 ]
 do
     # Cleanup old indicies
